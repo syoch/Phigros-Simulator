@@ -60,9 +60,11 @@ public class GameController : MonoBehaviour
   public GameObject LinePrefab;
   public GameObject[] LineObjects;
   public double a;
+  static public float StartTime;
   // Start is called before the first frame update
   void Start()
   {
+    StartTime = Time.time;
     BarTime = 60f / 200f;
     chart = JsonUtility.FromJson<Chart>(Resources.Load<TextAsset>("test").text);
 
