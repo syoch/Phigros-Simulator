@@ -17,13 +17,13 @@ public class Line
 [Serializable]
 public class Rotate
 {
-  public int[] timing;
+  public double[] timing;
   public int[] val;
 }
 [Serializable]
 public class Position
 {
-  public int[] timing;
+  public double[] timing;
   public int x;
   public int y;
 }
@@ -31,14 +31,14 @@ public class Position
 [Serializable]
 public class Note
 {
-  public int[] timing;
+  public double[] timing;
   public string type;
   public double pos;
 }
 [Serializable]
 public class SongSpeed
 {
-  public int[] timing;
+  public double[] timing;
   public double bpm;
 }
 [Serializable]
@@ -119,7 +119,7 @@ public class GameController : MonoBehaviour
     var barIndex = Mathf.Round(Time.time / BarTime);
     var time = Time.time % BarTime;
   }
-  double TimingToYPos(int[] timing)
+  double TimingToYPos(double[] timing)
   {
     return 200 * (timing[0] + timing[1] / timing[2]);
   }
