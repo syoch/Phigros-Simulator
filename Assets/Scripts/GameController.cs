@@ -6,45 +6,43 @@ using UnityEngine;
 [SerializeField]
 public class Line
 {
-  [SerializeField]
-  public class Rotate
-  {
-    public int[] timing;
-    public int[] val;
-  }
-  [SerializeField]
-  public class Position
-  {
-    public int[] timing;
-    public int x;
-    public int y;
-  }
-
-  [SerializeField]
-  public class Note
-  {
-    public int[] timing;
-    public string type;
-    public double pos;
-  }
+  [System.NonSerialized]
   public GameObject[] noteobjects;
 
   public Rotate[] rotates;
   public Position[] positions;
   public Note[] notes;
 }
+[SerializeField]
+public class Rotate
+{
+  public int[] timing;
+  public int[] val;
+}
+[SerializeField]
+public class Position
+{
+  public int[] timing;
+  public int x;
+  public int y;
+}
 
+[SerializeField]
+public class Note
+{
+  public int[] timing;
+  public string type;
+  public double pos;
+}
+[SerializeField]
+public class SongSpeed
+{
+  public int[] timing;
+  public double bpm;
+}
 [SerializeField]
 public class Chart
 {
-  [SerializeField]
-  public class SongSpeed
-  {
-    public int[] timing;
-    public double bpm;
-  }
-
-
   public string name;
   public SongSpeed[] times;
   public Line[] lines;
