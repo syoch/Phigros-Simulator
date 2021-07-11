@@ -59,6 +59,7 @@ public class GameController : MonoBehaviour
   public GameObject DragNote;
   public GameObject FlickNote;
   public GameObject LineNote;
+  public GameObject[] LineObjects;
   // Start is called before the first frame update
   void Start()
   {
@@ -71,12 +72,45 @@ public class GameController : MonoBehaviour
 
     LineNote = Resources.Load<GameObject>("Line");
 
-
+    loadChart();
+  }
+  void loadChart()
+  {
+    LineObjects = new GameObject[chart.lines.Length];
+    int i = 0;
+    foreach (var line in chart.lines)
+    {
+      LoadLine(i, line);
+      ++i;
+    }
+  }
+  void LoadLine(int i, Line line)
+  {
+    GameObject noteobject;
+    foreach (var note in line.notes)
+    {
+      if (note.type == "tap")
+      {
+        noteobject = Instantiate(TapNote);
+        LineObjects[i].Add(noteobject);
+      }
+      if (note.type == "drag")
+      {
+        noteobject = Instantiate(DragNote);
+        LineObjects[i].Add(noteobject);
+      }
+      if (note.type == "flick")
+      {
+        noteobject = Instantiate(FlickNote);
+        LineObjects[i].Add(noteobject);
+      }
+    }
   }
 
   // Update is called once per frame
   void Update()
   {
-    // Debug.LogFormat("{0} {1}", Mathf.Round(Time.time / BarTime), Time.time % BarTime);
+    var barIndex = Mathf.Round(Time.time / BarTime);
+    var time = Time.time % BarTime;
   }
 }
