@@ -126,6 +126,6 @@ public class GameController : MonoBehaviour
   }
   double TimingToYPos(double[] timing)
   {
-    return a * (1 + timing[0] + timing[1] / timing[2]);
+    return a * (timing[0] + timing[1] / timing[2]);
   }
 }
