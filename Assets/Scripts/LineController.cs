@@ -16,9 +16,11 @@ public class LineController : MonoBehaviour
   {
 
   }
-  public void MakeNode(GameObject baseObject)
+  public void MakeNode(GameObject baseObject, double y)
   {
     var obj = Instantiate(baseObject, transform);
+    var pos = obj.transform.position;
+    pos.y = (float)y;
     notes.Add(obj);
   }
 }

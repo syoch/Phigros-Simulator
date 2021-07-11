@@ -109,7 +109,7 @@ public class GameController : MonoBehaviour
       {
         baseObject = TapNote;
       }
-      controller.MakeNode(baseObject);
+      controller.MakeNode(baseObject, TimingToYPos(note.timing));
     }
   }
 
