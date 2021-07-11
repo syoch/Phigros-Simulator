@@ -16,4 +16,9 @@ public class LineController : MonoBehaviour
   {
 
   }
+  public void MakeNode(GameObject baseObject)
+  {
+    var obj = Instantiate(baseObject, transform);
+    notes.Add(obj);
+  }
 }

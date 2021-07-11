@@ -85,14 +85,11 @@ public class GameController : MonoBehaviour
   }
   void LoadLine(int i, Line line)
   {
-    GameObject noteobject;
-
     var lineObject = Instantiate(LinePrefab);
     var controller = lineObject.GetComponent<LineController>();
 
     LineObjects[i] = lineObject;
 
-    Transform parent = lineObject.transform;
     GameObject baseObject;
     foreach (var note in line.notes)
     {
@@ -112,8 +109,7 @@ public class GameController : MonoBehaviour
       {
         baseObject = TapNote;
       }
-      noteobject = Instantiate(baseObject, parent);
-      controller.notes.Add(noteobject);
+      controller.MakeNode(baseObject);
     }
   }
 
