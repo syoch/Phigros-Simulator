@@ -61,6 +61,12 @@ public class GameController : MonoBehaviour
   public GameObject[] LineObjects;
   public double a;
   static public float StartTime;
+
+  static public GameController Instance;
+  void Awake()
+  {
+    Instance = this;
+  }
   // Start is called before the first frame update
   void Start()
   {
