@@ -89,27 +89,30 @@ public class GameController : MonoBehaviour
 
     var lineObject = Instantiate(LinePrefab);
     var controller = lineObject.GetComponent<LineController>();
-    
+
     LineObjects[i] = lineObject;
-    
+
+    Transform parent = lineObject.transform;
+    GameObject baseObject;
     foreach (var note in line.notes)
     {
       if (note.type == "tap")
       {
-        noteobject = Instantiate(TapNote, lineObject.transform);
+        baseObject = TapNote;
       }
       else if (note.type == "drag")
       {
-        noteobject = Instantiate(DragNote, lineObject.transform);
+        baseObject = DragNote;
       }
       else if (note.type == "flick")
       {
-        noteobject = Instantiate(FlickNote, lineObject.transform);
+        baseObject = FlickNote;
       }
       else
       {
-        noteobject = Instantiate(TapNote);
+        baseObject = TapNote;
       }
+      noteobject = Instantiate(baseObject, parent);
       controller.notes.Add(noteobject);
     }
   }
