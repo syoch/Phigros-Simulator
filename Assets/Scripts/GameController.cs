@@ -92,17 +92,17 @@ public class GameController : MonoBehaviour
       if (note.type == "tap")
       {
         noteobject = Instantiate(TapNote);
-        LineObjects[i].Add(noteobject);
+        LineObjects[i].GetComponent<LineController>().notes.Add(note);
       }
       if (note.type == "drag")
       {
         noteobject = Instantiate(DragNote);
-        LineObjects[i].Add(noteobject);
+        LineObjects[i].GetComponent<LineController>().notes.Add(noteobject);
       }
       if (note.type == "flick")
       {
         noteobject = Instantiate(FlickNote);
-        LineObjects[i].Add(noteobject);
+        LineObjects[i].GetComponent<LineController>().notes.Add(noteobject);
       }
     }
   }
