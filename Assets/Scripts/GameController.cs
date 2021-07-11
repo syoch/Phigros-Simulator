@@ -1,9 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
-[System.Serialize]
+[Serializable]
 public class Line
 {
   [System.NonSerialized]
@@ -13,13 +14,13 @@ public class Line
   public Position[] positions;
   public Note[] notes;
 }
-[System.Serialize]
+[Serializable]
 public class Rotate
 {
   public int[] timing;
   public int[] val;
 }
-[System.Serialize]
+[Serializable]
 public class Position
 {
   public int[] timing;
@@ -27,20 +28,20 @@ public class Position
   public int y;
 }
 
-[System.Serialize]
+[Serializable]
 public class Note
 {
   public int[] timing;
   public string type;
   public double pos;
 }
-[System.Serialize]
+[Serializable]
 public class SongSpeed
 {
   public int[] timing;
   public double bpm;
 }
-[System.Serialize]
+[Serializable]
 public class Chart
 {
   public string name;
