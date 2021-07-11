@@ -94,8 +94,6 @@ public class GameController : MonoBehaviour
     GameObject baseObject;
     foreach (var note in line.notes)
     {
-      Debug.LogFormat("{0} {1} {2}", note.timing[0], note.timing[1], note.timing[2]);
-      Debug.Log(TimingToYPos(note.timing));
       if (note.type == "tap")
       {
         baseObject = TapNote;
@@ -128,6 +126,6 @@ public class GameController : MonoBehaviour
   }
   double TimingToYPos(double[] timing)
   {
-    return a * (timing[0] + timing[1] / timing[2]);
+    return a * (1 + timing[0] + timing[1] / timing[2]);
   }
 }
