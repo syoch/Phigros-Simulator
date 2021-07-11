@@ -45,11 +45,23 @@ public class GameController : MonoBehaviour
   public float BarTime;
   public Chart chart;
   public int idx;
+  public GameObject TapNote;
+  public GameObject DragNote;
+  public GameObject SlideNote;
+  public GameObject LineNote;
   // Start is called before the first frame update
   void Start()
   {
     BarTime = 60f / 200f;
     chart = JsonUtility.FromJson<Chart>(Resources.Load<TextAsset>("test").text);
+
+    TapNote = Resources.Load<GameObject>("Prefab/Note");
+    DragNote = Resources.Load<GameObject>("Prefab/Note");
+    SlideNote = Resources.Load<GameObject>("Prefab/Note");
+
+    LineNote = Resources.Load<GameObject>("Prefab/Line");
+
+
   }
 
   // Update is called once per frame
