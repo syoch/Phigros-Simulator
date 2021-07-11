@@ -5,7 +5,7 @@
   ],
   "lines":[
     {
-      "rotate":[
+      "rotates":[
         {"timing":[2, 0, 4], "val": 360}
       ],
       "positions":[
