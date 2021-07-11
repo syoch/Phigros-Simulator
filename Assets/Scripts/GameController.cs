@@ -37,7 +37,7 @@ public class Chart
 {
   public string name;
   public int line_count;
-
+  public NoteBase[] notes;
 }
 
 public class GameController : MonoBehaviour
