@@ -58,7 +58,7 @@ public class GameController : MonoBehaviour
   public GameObject TapNote;
   public GameObject DragNote;
   public GameObject FlickNote;
-  public GameObject LineNote;
+  public GameObject LinePrefab;
   public GameObject[] LineObjects;
   // Start is called before the first frame update
   void Start()
@@ -70,7 +70,7 @@ public class GameController : MonoBehaviour
     DragNote = Resources.Load<GameObject>("Note");
     FlickNote = Resources.Load<GameObject>("Note");
 
-    LineNote = Resources.Load<GameObject>("Line");
+    LinePrefab = Resources.Load<GameObject>("Line");
 
     loadChart();
   }
@@ -87,6 +87,7 @@ public class GameController : MonoBehaviour
   void LoadLine(int i, Line line)
   {
     GameObject noteobject;
+    LineObjects[i] = Instantiate(LinePrefab);
     var controller = LineObjects[i].GetComponent<LineController>();
     foreach (var note in line.notes)
     {
