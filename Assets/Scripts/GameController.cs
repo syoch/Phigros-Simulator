@@ -119,4 +119,8 @@ public class GameController : MonoBehaviour
     var barIndex = Mathf.Round(Time.time / BarTime);
     var time = Time.time % BarTime;
   }
+  double TimingToYPos(int[] timing)
+  {
+    return 200 * (timing[0] + timing[1] / timing[2]);
+  }
 }
