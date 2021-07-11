@@ -27,7 +27,7 @@ public class Line
     public string type;
     public double pos;
   }
-  public GameObject[] notes;
+  public GameObject[] noteobjects;
 
   public Rotate[] rotates;
   public Position[] positions;
