@@ -86,21 +86,25 @@ public class GameController : MonoBehaviour
   void LoadLine(int i, Line line)
   {
     GameObject noteobject;
-    LineObjects[i] = Instantiate(LinePrefab);
-    var controller = LineObjects[i].GetComponent<LineController>();
+
+    var lineObject = Instantiate(LinePrefab);
+    var controller = lineObject.GetComponent<LineController>();
+    
+    LineObjects[i] = lineObject;
+    
     foreach (var note in line.notes)
     {
       if (note.type == "tap")
       {
-        noteobject = Instantiate(TapNote, LineObjects[i].transform);
+        noteobject = Instantiate(TapNote, lineObject.transform);
       }
       else if (note.type == "drag")
       {
-        noteobject = Instantiate(DragNote, LineObjects[i].transform);
+        noteobject = Instantiate(DragNote, lineObject.transform);
       }
       else if (note.type == "flick")
       {
-        noteobject = Instantiate(FlickNote, LineObjects[i].transform);
+        noteobject = Instantiate(FlickNote, lineObject.transform);
       }
       else
       {
