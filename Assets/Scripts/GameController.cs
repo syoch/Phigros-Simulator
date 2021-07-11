@@ -70,7 +70,6 @@ public class GameController : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
-    StartTime = Time.time;
     BarTime = 60f / 200f;
     chart = JsonUtility.FromJson<Chart>(Resources.Load<TextAsset>("test").text);
 
@@ -81,6 +80,7 @@ public class GameController : MonoBehaviour
     LinePrefab = Resources.Load<GameObject>("Line");
 
     loadChart();
+    StartTime = Time.time;
   }
   void loadChart()
   {
