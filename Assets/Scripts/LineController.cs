@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LineController : MonoBehaviour
 {
-  public GameObject[] notes;
+  public List<GameObject> notes;
   // Start is called before the first frame update
   void Start()
   {
