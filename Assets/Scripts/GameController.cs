@@ -44,6 +44,7 @@ public class GameController : MonoBehaviour
 {
   public float BarTime;
   public Chart chart;
+  public int idx;
   // Start is called before the first frame update
   void Start()
   {
