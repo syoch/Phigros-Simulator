@@ -43,11 +43,12 @@ public class Chart
 public class GameController : MonoBehaviour
 {
   public float BarTime;
-  public TextAsset chart;
+  public Chart chart;
   // Start is called before the first frame update
   void Start()
   {
     BarTime = 60f / 200f;
+    chart = JsonUtility.FromJson<Chart>(Resources.Load<TextAsset>("test").text);
   }
 
   // Update is called once per frame
