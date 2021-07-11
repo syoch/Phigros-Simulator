@@ -92,15 +92,15 @@ public class GameController : MonoBehaviour
     {
       if (note.type == "tap")
       {
-        noteobject = Instantiate(TapNote);
+        noteobject = Instantiate(TapNote, LineObjects[i].transform);
       }
       else if (note.type == "drag")
       {
-        noteobject = Instantiate(DragNote);
+        noteobject = Instantiate(DragNote, LineObjects[i].transform);
       }
       else if (note.type == "flick")
       {
-        noteobject = Instantiate(FlickNote);
+        noteobject = Instantiate(FlickNote, LineObjects[i].transform);
       }
       else
       {
