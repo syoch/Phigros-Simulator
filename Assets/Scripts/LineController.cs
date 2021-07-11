@@ -21,6 +21,7 @@ public class LineController : MonoBehaviour
     var obj = Instantiate(baseObject, transform);
     var pos = obj.transform.position;
     pos.y = (float)y;
+    obj.transform.position = pos;
     notes.Add(obj);
   }
 }
