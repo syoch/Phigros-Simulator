@@ -47,7 +47,7 @@ public class GameController : MonoBehaviour
   public int idx;
   public GameObject TapNote;
   public GameObject DragNote;
-  public GameObject SlideNote;
+  public GameObject FlickNote;
   public GameObject LineNote;
   // Start is called before the first frame update
   void Start()
@@ -57,7 +57,7 @@ public class GameController : MonoBehaviour
 
     TapNote = Resources.Load<GameObject>("Note");
     DragNote = Resources.Load<GameObject>("Note");
-    SlideNote = Resources.Load<GameObject>("Note");
+    FlickNote = Resources.Load<GameObject>("Note");
 
     LineNote = Resources.Load<GameObject>("Line");
 
