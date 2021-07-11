@@ -1,43 +1,52 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[SerializeField]
-public class NoteBase
-{
-  public int[] timing;
-  public int line;
-  public string type;
-}
-[SerializeField]
-public class Note : NoteBase
-{
-  public double pos; // -120 ~ 120
-}
+
 
 [SerializeField]
-public class NewLine : NoteBase
+public class Line
 {
-  public double[] pos;
-  double rot;
-}
-[SerializeField]
-public class MoveLine : NoteBase
-{
-  public double[] pos;
-  public double rot;
+  [SerializeField]
+  public class Rotate
+  {
+    public int[] timing;
+    public int[] val;
+  }
+  [SerializeField]
+  public class Position
+  {
+    public int[] timing;
+    public int x;
+    public int y;
+  }
+
+  [SerializeField]
+  public class Note
+  {
+    public int[] timing;
+    public string type;
+    public double pos;
+  }
+
+  public Rotate[] rotates;
+  public Position[] positions;
+  public Note[] notes;
 }
 
-[SerializeField]
-public class Speed : NoteBase
-{
-  public double rot;
-}
 [SerializeField]
 public class Chart
 {
+  [SerializeField]
+  public class SongSpeed
+  {
+    public int[] timing;
+    public double bpm;
+  }
+
+
   public string name;
-  public int line_count;
-  public NoteBase[] notes;
+  public SongSpeed[] times;
+  public Line[] lines;
 }
 
 public class GameController : MonoBehaviour
