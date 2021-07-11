@@ -112,7 +112,11 @@ public class GameController : MonoBehaviour
       {
         baseObject = TapNote;
       }
-      controller.MakeNode(baseObject, TimingToYPos(note.timing));
+      var pos = Camera.main.ViewportToWorldPoint(new Vector2(
+        (float)((note.pos + 1) / 2),
+        1
+      ));
+      controller.MakeNode(baseObject, TimingToYPos(note.timing), pos.x);
     }
   }
 
