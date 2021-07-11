@@ -55,11 +55,11 @@ public class GameController : MonoBehaviour
     BarTime = 60f / 200f;
     chart = JsonUtility.FromJson<Chart>(Resources.Load<TextAsset>("test").text);
 
-    TapNote = Resources.Load<GameObject>("Prefab/Note");
-    DragNote = Resources.Load<GameObject>("Prefab/Note");
-    SlideNote = Resources.Load<GameObject>("Prefab/Note");
+    TapNote = Resources.Load<GameObject>("Note");
+    DragNote = Resources.Load<GameObject>("Note");
+    SlideNote = Resources.Load<GameObject>("Note");
 
-    LineNote = Resources.Load<GameObject>("Prefab/Line");
+    LineNote = Resources.Load<GameObject>("Line");
 
 
   }
