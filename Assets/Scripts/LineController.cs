@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class LineController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+  public GameObject[] notes;
+  // Start is called before the first frame update
+  void Start()
+  {
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+  }
+
+  // Update is called once per frame
+  void Update()
+  {
+
+  }
 }
