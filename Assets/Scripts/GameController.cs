@@ -87,23 +87,26 @@ public class GameController : MonoBehaviour
   void LoadLine(int i, Line line)
   {
     GameObject noteobject;
+    var controller = LineObjects[i].GetComponent<LineController>();
     foreach (var note in line.notes)
     {
       if (note.type == "tap")
       {
         noteobject = Instantiate(TapNote);
-        LineObjects[i].GetComponent<LineController>().notes.Add(noteobject);
       }
-      if (note.type == "drag")
+      else if (note.type == "drag")
       {
         noteobject = Instantiate(DragNote);
-        LineObjects[i].GetComponent<LineController>().notes.Add(noteobject);
       }
-      if (note.type == "flick")
+      else if (note.type == "flick")
       {
         noteobject = Instantiate(FlickNote);
-        LineObjects[i].GetComponent<LineController>().notes.Add(noteobject);
       }
+      else
+      {
+        noteobject = Instantiate(TapNote);
+      }
+      controller.notes.Add(noteobject);
     }
   }
 
