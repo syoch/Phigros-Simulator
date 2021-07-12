@@ -14,12 +14,10 @@ public class NoteController : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-    var pos = transform.position;
-
-    pos.y = StartPos
-          - (Time.time - GameController.StartTime)
+    var pos = transform.localPosition;
+    pos.y -= Time.deltaTime
             / GameController.Instance.BarTime
             * (float)GameController.Instance.a;
-    transform.position = pos;
+    transform.localPosition = pos;
   }
 }
