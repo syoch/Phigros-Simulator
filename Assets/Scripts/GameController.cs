@@ -122,7 +122,7 @@ public class GameController : MonoBehaviour
         (float)((note.pos + 1) / 2),
         1
       ));
-      controller.MakeNode(baseObject, 5 * a + TimingToYPos(note.timing), pos.x);
+      controller.MakeNode(baseObject, a + TimingToYPos(note.timing), pos.x);
     }
   }
 
