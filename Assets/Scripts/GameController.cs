@@ -71,6 +71,7 @@ public class GameController : MonoBehaviour
   void Start()
   {
     BarTime = 60f / 200f;
+    a = 100f;
     chart = JsonUtility.FromJson<Chart>(Resources.Load<TextAsset>("test").text);
 
     TapNote = Resources.Load<GameObject>("Note");
@@ -122,7 +123,11 @@ public class GameController : MonoBehaviour
         (float)((note.pos + 1) / 2),
         1
       ));
-      controller.MakeNode(baseObject, a + TimingToYPos(note.timing), pos.x);
+      controller.MakeNode(
+        baseObject,
+        20 * a + TimingToYPos(note.timing),
+        pos.x
+      );
     }
   }
 
@@ -134,6 +139,7 @@ public class GameController : MonoBehaviour
   }
   double TimingToYPos(double[] timing)
   {
-    return a * (timing[0] + timing[1] / timing[2]);
+    // `20` is fixer(line)
+    return a * 20 * (timing[0] + timing[1] / timing[2]);
   }
 }
