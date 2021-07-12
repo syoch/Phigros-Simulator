@@ -8,7 +8,7 @@ public class NoteController : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
-    StartPos = transform.position.y;
+
   }
 
   // Update is called once per frame
@@ -19,5 +19,11 @@ public class NoteController : MonoBehaviour
             / GameController.Instance.BarTime
             * (float)GameController.Instance.a;
     transform.localPosition = pos;
+  }
+
+  public void init()
+  {
+    StartPos = transform.position.y;
+    Debug.Log(StartPos);
   }
 }

@@ -24,5 +24,7 @@ public class LineController : MonoBehaviour
     pos.x = x;
     obj.transform.position = pos;
     notes.Add(obj);
+
+    obj.GetComponent<NoteController>().init();
   }
 }
