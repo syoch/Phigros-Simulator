@@ -58,7 +58,6 @@ public class GameController : MonoBehaviour
   public GameObject DragNote;
   public GameObject FlickNote;
   public GameObject LinePrefab;
-  public GameObject[] LineObjects;
   public GameObject LoadingObject;
   public double a;
   static public float StartTime;
@@ -96,7 +95,6 @@ public class GameController : MonoBehaviour
     chart = JsonUtility.FromJson<Chart>(raw);
     yield return null;
 
-    LineObjects = new GameObject[chart.lines.Length];
     int i = 0;
     foreach (var line in chart.lines)
     {
@@ -110,10 +108,8 @@ public class GameController : MonoBehaviour
   }
   IEnumerator LoadLine(int i, Line line)
   {
-    var lineObject = Instantiate(LinePrefab);
-    var controller = lineObject.GetComponent<LineController>();
-
-    LineObjects[i] = lineObject;
+    line.obj = Instantiate(LinePrefab);
+    var controller = line.obj.GetComponent<LineController>();
 
     GameObject baseObject;
     foreach (var note in line.notes)
