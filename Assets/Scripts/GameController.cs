@@ -109,38 +109,43 @@ public class GameController : MonoBehaviour
   IEnumerator LoadLine(int i, Line line)
   {
     line.obj = Instantiate(LinePrefab);
-    var controller = line.obj.GetComponent<LineController>();
 
-    GameObject baseObject;
     foreach (var note in line.notes)
     {
-      if (note.type == "tap")
-      {
-        baseObject = TapNote;
-      }
-      else if (note.type == "drag")
-      {
-        baseObject = DragNote;
-      }
-      else if (note.type == "flick")
-      {
-        baseObject = FlickNote;
-      }
-      else
-      {
-        baseObject = TapNote;
-      }
-      var pos = Camera.main.ViewportToWorldPoint(new Vector2(
-        (float)((note.pos + 1) / 2),
-        1
-      ));
-      controller.MakeNode(
-        baseObject,
-        a + TimingToYPos(note.timing),
-        pos.x
-      );
-      yield return null;
+      yield return LoadNote(note, line);
     }
+  }
+  IEnumerator LoadNote(Note note, Line line)
+  {
+    GameObject baseObject;
+    var controller = line.obj.GetComponent<LineController>();
+
+    if (note.type == "tap")
+    {
+      baseObject = TapNote;
+    }
+    else if (note.type == "drag")
+    {
+      baseObject = DragNote;
+    }
+    else if (note.type == "flick")
+    {
+      baseObject = FlickNote;
+    }
+    else
+    {
+      baseObject = TapNote;
+    }
+    var pos = Camera.main.ViewportToWorldPoint(new Vector2(
+      (float)((note.pos + 1) / 2),
+      1
+    ));
+    controller.MakeNode(
+      baseObject,
+      a + TimingToYPos(note.timing),
+      pos.x
+    );
+    yield return null;
   }
 
   // Update is called once per frame
