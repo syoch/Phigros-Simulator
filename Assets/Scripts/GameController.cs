@@ -93,6 +93,7 @@ public class GameController : MonoBehaviour
       ++i;
       yield return null;
     }
+    StartTime = Time.time;
   }
   IEnumerator LoadLine(int i, Line line)
   {
@@ -136,11 +137,6 @@ public class GameController : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-    if (f == false)
-    {
-      f = true;
-      StartTime = Time.time;
-    }
     var barIndex = Mathf.Round(Time.time / BarTime);
     var time = Time.time % BarTime;
   }
