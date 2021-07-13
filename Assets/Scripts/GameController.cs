@@ -81,19 +81,20 @@ public class GameController : MonoBehaviour
 
     LinePrefab = Resources.Load<GameObject>("Line");
 
-    loadChart();
+    StartCoroutine("LoadChart");
   }
-  void loadChart()
+  IEnumerator LoadChart()
   {
     LineObjects = new GameObject[chart.lines.Length];
     int i = 0;
     foreach (var line in chart.lines)
     {
-      LoadLine(i, line);
+      yield return LoadLine(i, line);
       ++i;
+      yield return null;
     }
   }
-  void LoadLine(int i, Line line)
+  IEnumerator LoadLine(int i, Line line)
   {
     var lineObject = Instantiate(LinePrefab);
     var controller = lineObject.GetComponent<LineController>();
@@ -128,6 +129,7 @@ public class GameController : MonoBehaviour
         a + TimingToYPos(note.timing),
         pos.x
       );
+      yield return null;
     }
   }
 
