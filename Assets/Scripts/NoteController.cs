@@ -5,6 +5,7 @@ using UnityEngine;
 public class NoteController : MonoBehaviour
 {
   public float StartPos;
+  private bool _initalized = false;
   // Start is called before the first frame update
   void Start()
   {
@@ -14,6 +15,8 @@ public class NoteController : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
+    if (!_initalized) return;
+
     var pos = transform.localPosition;
     pos.y -= Time.deltaTime
             / GameController.Instance.BarTime
@@ -23,6 +26,7 @@ public class NoteController : MonoBehaviour
 
   public void init()
   {
+    _initalized = true;
     StartPos = transform.position.y;
     Debug.Log(StartPos);
   }
