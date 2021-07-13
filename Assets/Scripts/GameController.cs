@@ -96,6 +96,7 @@ public class GameController : MonoBehaviour
       yield return null;
     }
     StartTime = Time.time;
+    yield return new WaitForSeconds(0.5f);
     LoadingObject.SetActive(false);
   }
   IEnumerator LoadLine(int i, Line line)
