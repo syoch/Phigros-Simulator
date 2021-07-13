@@ -63,6 +63,7 @@ public class GameController : MonoBehaviour
   static public float StartTime;
 
   static public GameController Instance;
+  static bool f;
   void Awake()
   {
     Instance = this;
@@ -81,7 +82,6 @@ public class GameController : MonoBehaviour
     LinePrefab = Resources.Load<GameObject>("Line");
 
     loadChart();
-    StartTime = Time.time;
   }
   void loadChart()
   {
@@ -125,7 +125,7 @@ public class GameController : MonoBehaviour
       ));
       controller.MakeNode(
         baseObject,
-        20 * a + TimingToYPos(note.timing),
+        a + TimingToYPos(note.timing),
         pos.x
       );
     }
@@ -134,12 +134,16 @@ public class GameController : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
+    if (f == false)
+    {
+      f = true;
+      StartTime = Time.time;
+    }
     var barIndex = Mathf.Round(Time.time / BarTime);
     var time = Time.time % BarTime;
   }
   double TimingToYPos(double[] timing)
   {
-    // `20` is fixer(line)
-    return a * 20 * (timing[0] + timing[1] / timing[2]);
+    return a * (timing[0] + timing[1] / timing[2]);
   }
 }
