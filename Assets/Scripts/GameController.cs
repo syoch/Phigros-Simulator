@@ -74,19 +74,28 @@ public class GameController : MonoBehaviour
   {
     BarTime = 60f / 200f;
     a = 100f;
-    chart = JsonUtility.FromJson<Chart>(Resources.Load<TextAsset>("test").text);
-
-    TapNote = Resources.Load<GameObject>("Note");
-    DragNote = Resources.Load<GameObject>("Note");
-    FlickNote = Resources.Load<GameObject>("Note");
-
-    LinePrefab = Resources.Load<GameObject>("Line");
 
     StartCoroutine("LoadChart");
   }
   IEnumerator LoadChart()
   {
     LoadingObject.SetActive(true);
+    // load some prefabs
+    TapNote = Resources.Load<GameObject>("Note");
+    yield return null;
+    DragNote = Resources.Load<GameObject>("Note");
+    yield return null;
+    FlickNote = Resources.Load<GameObject>("Note");
+    yield return null;
+    LinePrefab = Resources.Load<GameObject>("Line");
+    yield return null;
+
+    // load chart( as json )
+    var raw = Resources.Load<TextAsset>("test").text;
+    yield return null;
+    chart = JsonUtility.FromJson<Chart>(raw);
+    yield return null;
+
     LineObjects = new GameObject[chart.lines.Length];
     int i = 0;
     foreach (var line in chart.lines)
