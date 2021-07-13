@@ -59,6 +59,7 @@ public class GameController : MonoBehaviour
   public GameObject FlickNote;
   public GameObject LinePrefab;
   public GameObject[] LineObjects;
+  public GameObject LoadingObject;
   public double a;
   static public float StartTime;
 
@@ -85,6 +86,7 @@ public class GameController : MonoBehaviour
   }
   IEnumerator LoadChart()
   {
+    LoadingObject.SetActive(true);
     LineObjects = new GameObject[chart.lines.Length];
     int i = 0;
     foreach (var line in chart.lines)
@@ -94,6 +96,7 @@ public class GameController : MonoBehaviour
       yield return null;
     }
     StartTime = Time.time;
+    LoadingObject.SetActive(false);
   }
   IEnumerator LoadLine(int i, Line line)
   {
