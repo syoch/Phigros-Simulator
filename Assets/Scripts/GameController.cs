@@ -8,7 +8,7 @@ using UnityEngine;
 public class Line
 {
   [System.NonSerialized]
-  public GameObject[] noteobjects;
+  public GameObject obj;
 
   public Rotate[] rotates;
   public Position[] positions;
