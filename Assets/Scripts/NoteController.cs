@@ -22,6 +22,12 @@ public class NoteController : MonoBehaviour
             / GameController.Instance.BarTime
             * (float)GameController.Instance.a;
     transform.localPosition = pos;
+
+    if (pos.y < 0)
+    {
+      // TODO: play note's SE
+      Destroy(gameObject, 0);
+    }
   }
 
   public void init()
