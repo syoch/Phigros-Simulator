@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class LineController : MonoBehaviour
 {
-  public List<GameObject> notes;
   // Start is called before the first frame update
   void Start()
   {
@@ -23,7 +22,6 @@ public class LineController : MonoBehaviour
     pos.y = (float)y;
     pos.x = x;
     obj.transform.position = pos;
-    notes.Add(obj);
 
     obj.GetComponent<NoteController>().init();
   }
