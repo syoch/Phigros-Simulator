@@ -63,6 +63,7 @@ public class GameController : MonoBehaviour
   static public float StartTime;
 
   static public GameController Instance;
+  public bool Started;
   static bool f;
   void Awake()
   {
@@ -95,6 +96,7 @@ public class GameController : MonoBehaviour
     // end
     Debug.Log("Load - Waiting 0.5 second");
     yield return new WaitForSeconds(0.5f);
+    GameStart();
     Debug.Log("Load - Loading Process Is Done");
     LoadingObject.SetActive(false);
   }
@@ -166,6 +168,10 @@ public class GameController : MonoBehaviour
     }
   }
 
+  void GameStart()
+  {
+    Started = true;
+  }
   // Update is called once per frame
   void Update()
   {
