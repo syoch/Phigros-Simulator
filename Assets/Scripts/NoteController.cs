@@ -34,6 +34,5 @@ public class NoteController : MonoBehaviour
   {
     _initalized = true;
     StartPos = transform.position.y;
-    Debug.Log(StartPos);
   }
 }

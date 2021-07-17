@@ -80,6 +80,7 @@ public class GameController : MonoBehaviour
   {
     LoadingObject.SetActive(true);
     // load prefabs
+    Debug.Log("Load - Loading prefabs...");
     TapNote = Resources.Load<GameObject>("TapNote");
     yield return null;
     DragNote = Resources.Load<GameObject>("DragNote");
@@ -89,36 +90,45 @@ public class GameController : MonoBehaviour
     LinePrefab = Resources.Load<GameObject>("Line");
     yield return null;
     // load chart
+    Debug.Log("Load - Loading Chart...");
     yield return LoadChart();
     // end
+    Debug.Log("Load - Waiting 0.5 second");
+    yield return new WaitForSeconds(0.5f);
+    Debug.Log("Load - Loading Process Is Done");
     LoadingObject.SetActive(false);
   }
   IEnumerator LoadChart()
   {
     // load chart( as json )
+    Debug.Log("LoadChart - loading json");
     var raw = Resources.Load<TextAsset>("test").text;
     yield return null;
     chart = JsonUtility.FromJson<Chart>(raw);
     yield return null;
 
+    Debug.Log("LoadChart - loading lines");
     int i = 0;
     foreach (var line in chart.lines)
     {
+      Debug.LogFormat("LoadChart - LoadLines - loading Lines[{0}]", i);
       yield return LoadLine(i, line);
       ++i;
       yield return null;
     }
     StartTime = Time.time;
-    yield return new WaitForSeconds(0.5f);
-    LoadingObject.SetActive(false);
+    Debug.Log("LoadChart - done");
   }
   IEnumerator LoadLine(int i, Line line)
   {
     line.obj = Instantiate(LinePrefab);
 
+    int j = 0;
     foreach (var note in line.notes)
     {
+      Debug.LogFormat("LoadLine - Lines[{0}]:Notes[{1}]", i, j);
       yield return LoadNote(note, line);
+      j++;
     }
   }
   IEnumerator LoadNote(Note note, Line line)
