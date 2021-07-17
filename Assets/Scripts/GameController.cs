@@ -127,6 +127,7 @@ public class GameController : MonoBehaviour
   {
     line.obj = Instantiate(LinePrefab);
     line.obj.GetComponent<LineController>().line = line;
+    line.obj.GetComponent<LineController>().Load();
     int j = 0;
     foreach (var note in line.notes)
     {
@@ -180,7 +181,7 @@ public class GameController : MonoBehaviour
     var barIndex = Mathf.Round(Time.time / BarTime);
     var time = Time.time % BarTime;
   }
-  double TimingToYPos(double[] timing)
+  public double TimingToYPos(double[] timing)
   {
     return BarYSize * (timing[0] + timing[1] / timing[2]);
   }
