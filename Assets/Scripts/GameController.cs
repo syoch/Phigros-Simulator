@@ -124,7 +124,7 @@ public class GameController : MonoBehaviour
   IEnumerator LoadLine(int i, Line line)
   {
     line.obj = Instantiate(LinePrefab);
-
+    line.obj.GetComponent<LineController>().line = line;
     int j = 0;
     foreach (var note in line.notes)
     {

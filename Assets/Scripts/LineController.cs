@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class LineController : MonoBehaviour
 {
+  private Line _line;
+  public Line line{
+    set{
+      _line = value;
+    }
+  }
   // Start is called before the first frame update
   void Start()
   {
