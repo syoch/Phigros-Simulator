@@ -71,8 +71,8 @@ public class GameController : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
-    BarTime = 60f / 200f;
-    a = 100f;
+    BarTime = 60f / (200f * 8f); // *4f is 32 -> 4
+    a = 100f / 8f;
 
     StartCoroutine("LoadChart");
   }
@@ -80,11 +80,11 @@ public class GameController : MonoBehaviour
   {
     LoadingObject.SetActive(true);
     // load some prefabs
-    TapNote = Resources.Load<GameObject>("Note");
+    TapNote = Resources.Load<GameObject>("TapNote");
     yield return null;
-    DragNote = Resources.Load<GameObject>("Note");
+    DragNote = Resources.Load<GameObject>("DragNote");
     yield return null;
-    FlickNote = Resources.Load<GameObject>("Note");
+    FlickNote = Resources.Load<GameObject>("FlickNote");
     yield return null;
     LinePrefab = Resources.Load<GameObject>("Line");
     yield return null;

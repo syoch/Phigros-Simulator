@@ -12,9 +12,15 @@
         {"timing":[2, 0, 4], "x": 0, "y":10}
       ],
       "notes": [
-        {"timing":[1, 1, 4], "type": "tap"  , "pos"  : 0.1},
-        {"timing":[1, 1, 4], "type": "flick", "pos"  : -0.1},
-        {"timing":[1, 2, 4], "type": "tap"  , "pos"  : 0}
+        {"timing":[0, 0, 4], "type": "tap", "pos"  : -0.875},
+        {"timing":[0, 1, 4], "type": "flick", "pos"  : -0.625},
+        {"timing":[0, 2, 4], "type": "tap", "pos"  : -0.375},
+        {"timing":[0, 3, 4], "type": "flick", "pos"  : -0.125},
+        
+        {"timing":[1, 0, 4], "type": "tap", "pos"  : 0.125},
+        {"timing":[1, 1, 4], "type": "flick", "pos"  : 0.375},
+        {"timing":[1, 2, 4], "type": "tap", "pos"  : 0.625},
+        {"timing":[1, 3, 4], "type": "flick", "pos"  : 0.875}
       ]
     }
   ]
