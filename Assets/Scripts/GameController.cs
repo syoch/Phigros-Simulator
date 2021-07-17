@@ -17,13 +17,15 @@ public class Line
 [Serializable]
 public class Rotate
 {
-  public double[] timing;
+  public double[] start;
+  public double[] end;
   public int[] val;
 }
 [Serializable]
 public class Position
 {
-  public double[] timing;
+  public double[] start;
+  public double[] end;
   public int x;
   public int y;
 }

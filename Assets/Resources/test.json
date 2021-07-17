@@ -6,10 +6,10 @@
   "lines":[
     {
       "rotates":[
-        {"timing":[2, 0, 4], "val": 360}
+        {"start":[0, 0, 4], "end":[1, 0, 4], "val": 360}
       ],
       "positions":[
-        {"timing":[2, 0, 4], "x": 0, "y":10}
+        {"start":[1, 0, 4], "end":[2, 0, 4], "x": 0, "y":-1}
       ],
       "notes": [
         {"timing":[0, 0, 4], "type": "tap", "pos"  : -0.875},
