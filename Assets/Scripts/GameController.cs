@@ -74,12 +74,12 @@ public class GameController : MonoBehaviour
     BarTime = 60f / (200f * 8f); // *4f is 32 -> 4
     a = 100f / 8f;
 
-    StartCoroutine("LoadChart");
+    StartCoroutine("Load");
   }
-  IEnumerator LoadChart()
+  IEnumerator Load()
   {
     LoadingObject.SetActive(true);
-    // load some prefabs
+    // load prefabs
     TapNote = Resources.Load<GameObject>("TapNote");
     yield return null;
     DragNote = Resources.Load<GameObject>("DragNote");
@@ -88,7 +88,13 @@ public class GameController : MonoBehaviour
     yield return null;
     LinePrefab = Resources.Load<GameObject>("Line");
     yield return null;
-
+    // load chart
+    yield return LoadChart();
+    // end
+    LoadingObject.SetActive(false);
+  }
+  IEnumerator LoadChart()
+  {
     // load chart( as json )
     var raw = Resources.Load<TextAsset>("test").text;
     yield return null;
