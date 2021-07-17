@@ -19,7 +19,7 @@ public class Rotate
 {
   public double[] start;
   public double[] end;
-  public int[] val;
+  public int val;
 }
 [Serializable]
 public class Position
