@@ -59,7 +59,7 @@ public class GameController : MonoBehaviour
   public GameObject FlickNote;
   public GameObject LinePrefab;
   public GameObject LoadingObject;
-  public double a;
+  public double BarYSize;
   static public float StartTime;
 
   static public GameController Instance;
@@ -72,7 +72,7 @@ public class GameController : MonoBehaviour
   void Start()
   {
     BarTime = 60f / (200f * 8f); // *4f is 32 -> 4
-    a = 100f / 8f;
+    BarYSize = 100f / 8f;
 
     StartCoroutine("Load");
   }
@@ -141,7 +141,7 @@ public class GameController : MonoBehaviour
     ));
     controller.MakeNode(
       GetNoteBaseObject(note.type),
-      a + TimingToYPos(note.timing),
+      BarYSize + TimingToYPos(note.timing),
       pos.x
     );
     yield return null;
@@ -174,6 +174,6 @@ public class GameController : MonoBehaviour
   }
   double TimingToYPos(double[] timing)
   {
-    return a * (timing[0] + timing[1] / timing[2]);
+    return BarYSize * (timing[0] + timing[1] / timing[2]);
   }
 }

@@ -20,7 +20,7 @@ public class NoteController : MonoBehaviour
     var pos = transform.localPosition;
     pos.y -= Time.deltaTime
             / GameController.Instance.BarTime
-            * (float)GameController.Instance.a;
+            * (float)GameController.Instance.BarYSize;
     transform.localPosition = pos;
 
     if (pos.y < 0)
