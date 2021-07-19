@@ -12,6 +12,17 @@ public class LineRotate
     return string.Format("{0}->{1}:{2}", Start, End, Deg);
   }
 }
+public class LinePosition
+{
+  public double Start;
+  public double End;
+  public int x;
+  public int y;
+  override public string ToString()
+  {
+    return string.Format("{0}->{1}:({2},{3})", Start, End, x,y);
+  }
+}
 
 public class LineController : MonoBehaviour
 {
