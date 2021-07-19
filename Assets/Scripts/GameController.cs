@@ -127,7 +127,7 @@ public class GameController : MonoBehaviour
   {
     line.obj = Instantiate(LinePrefab);
     line.obj.GetComponent<LineController>().line = line;
-    line.obj.GetComponent<LineController>().Load();
+    yield return line.obj.GetComponent<LineController>().Load();
     int j = 0;
     foreach (var note in line.notes)
     {
