@@ -129,4 +129,9 @@ public class GameController : MonoBehaviour
   {
     return BarYSize * (timing[0] + timing[1] / timing[2]);
   }
+  public double TimingToTime(double[] timing)
+  {
+    var ret = BarTime * (timing[0] + timing[1] / timing[2]) * 64;
+    return ret;
+  }
 }
