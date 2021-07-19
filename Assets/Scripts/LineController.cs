@@ -51,8 +51,8 @@ public class LineController : MonoBehaviour
       _line = value;
     }
   }
-  public LineRotate[] rotates;
-  public LinePosition[] positions;
+  public List<LineRotate> rotates;
+  public List<LinePosition> positions;
   static public GameObject NotePrefab;
   static public GameObject LinePrefab;
   // Start is called before the first frame update
@@ -62,15 +62,21 @@ public class LineController : MonoBehaviour
   }
 
   // Update is called once per frame
+  float RotateBegin = 0;
+  float BeforeRotate = 0;
   void Update()
   {
     if (rotates[0].Start > Time.time) return;
+    var current = (Time.deltaTime) / rotates[0].During * rotates[0].Deg;
+    transform.Rotate(0f, 0f, (float)current);
+    if (rotates[0].End < Time.time)
+    {
 
-
+    }
   }
   IEnumerator LoadRotates()
   {
-    rotates = new LineRotate[_line.rotates.Length];
+    rotates = new();
     int i = 0;
     foreach (var rotate in _line.rotates)
     {
@@ -78,11 +84,11 @@ public class LineController : MonoBehaviour
       yield return null;
       i++;
     }
-    Array.Sort(rotates, (a, b) => { return a.Start.CompareTo(b.Start); });
+    rotates.Sort((a, b) => { return a.Start.CompareTo(b.Start); });
   }
   IEnumerator LoadPositions()
   {
-    positions = new LinePosition[_line.positions.Length];
+    positions = new();
     int i = 0;
     foreach (var pos in _line.positions)
     {
@@ -90,7 +96,7 @@ public class LineController : MonoBehaviour
       yield return null;
       i++;
     }
-    Array.Sort(positions, (a, b) => { return a.Start.CompareTo(b.Start); });
+    positions.Sort((a, b) => { return a.Start.CompareTo(b.Start); });
   }
   public IEnumerator Load(Line line)
   {
