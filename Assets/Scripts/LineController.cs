@@ -60,29 +60,32 @@ public class LineController : MonoBehaviour
     foreach (var note in line.notes)
     {
       Debug.LogFormat("LoadLine - Lines[{0}]:Notes[{1}]", i, j);
-      var pos = Camera.main.ViewportToWorldPoint(new Vector2(
-        (float)((note.pos + 1) / 2),
-        1
-      ));
-      var noteobj = MakeNode(
-        GameController.Instance.BarYSize + GameController.Instance.TimingToYPos(note.timing),
-        pos.x
-      );
-      yield return noteobj.GetComponent<NoteController>().Load(note, line);
+
+      var noteobj = MakeNode(note, line);
+
       j++;
     }
   }
-  public GameObject MakeNode(double y, float x)
+  public IEnumerable MakeNode(Note note, Line line)
   {
     var obj = Instantiate(NotePrefab, transform);
-    var pos = obj.transform.position;
-    pos.y = (float)y;
-    pos.x = x;
-    obj.transform.position = pos;
+    yield return null;
 
-    obj.GetComponent<NoteController>().init();
+    var pos = Camera.main.ViewportToWorldPoint(new Vector2(
+      (float)((note.pos + 1) / 2),
+      1
+    ));
+    yield return null;
 
-    return obj;
+    obj.transform.position = new Vector2(
+      (float)(GameController.Instance.BarYSize + GameController.Instance.TimingToYPos(note.timing)),
+      pos.x
+    );
+    yield return null;
+
+    var controller = obj.GetComponent<NoteController>();
+    controller.init();
+    yield return controller.Load(note, line);
   }
   static public void LoadPrefab()
   {
