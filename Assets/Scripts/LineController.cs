@@ -25,6 +25,7 @@ public class LineController : MonoBehaviour
   }
   public LineRotate[] rotates;
   static public GameObject NotePrefab;
+  static public GameObject LinePrefab;
   // Start is called before the first frame update
   void Start()
   {
@@ -36,12 +37,15 @@ public class LineController : MonoBehaviour
   {
 
   }
-  public IEnumerator Load()
+  public IEnumerator Load(Line line)
   {
-    rotates = new LineRotate[_line.rotates.Length];
+    line.obj = gameObject;
+    this.line = line;
+
+    rotates = new LineRotate[line.rotates.Length];
     LineRotate data;
     int i = 0;
-    foreach (var rotate in _line.rotates)
+    foreach (var rotate in line.rotates)
     {
       data = new LineRotate();
       data.Start = rotate.start[0] + rotate.start[1] / rotate.start[2];
@@ -53,7 +57,7 @@ public class LineController : MonoBehaviour
     }
     Array.Sort(rotates, (a, b) => { return a.Start.CompareTo(b.Start); });
     int j = 0;
-    foreach (var note in _line.notes)
+    foreach (var note in line.notes)
     {
       Debug.LogFormat("LoadLine - Lines[{0}]:Notes[{1}]", i, j);
       var pos = Camera.main.ViewportToWorldPoint(new Vector2(
@@ -64,7 +68,7 @@ public class LineController : MonoBehaviour
         GameController.Instance.BarYSize + GameController.Instance.TimingToYPos(note.timing),
         pos.x
       );
-      yield return noteobj.GetComponent<NoteController>().Load(note, _line);
+      yield return noteobj.GetComponent<NoteController>().Load(note, line);
       j++;
     }
   }
@@ -83,5 +87,12 @@ public class LineController : MonoBehaviour
   static public void LoadPrefab()
   {
     NotePrefab = Resources.Load<GameObject>("Note");
+    LinePrefab = Resources.Load<GameObject>("Line");
+  }
+  static public IEnumerable Make(Line line)
+  {
+    yield return Instantiate<GameObject>(LinePrefab)
+                  .GetComponent<LineController>()
+                  .Load(line);
   }
 }

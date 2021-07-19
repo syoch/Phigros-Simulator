@@ -8,6 +8,7 @@ public class NoteController : MonoBehaviour
   static public Sprite TapNoteSprite;
   static public Sprite DragNoteSprite;
   static public Sprite FlickNoteSprite;
+  static public GameObject note;
   // Start is called before the first frame update
   void Start()
   {
@@ -45,6 +46,8 @@ public class NoteController : MonoBehaviour
     yield return null;
     TapNoteSprite = sprites[2];
     yield return null;
+
+    note = Resources.Load<GameObject>("Note");
     // TODO: Load Multi
   }
   public IEnumerator Load(Note note, Line line)

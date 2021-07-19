@@ -105,22 +105,16 @@ public class GameController : MonoBehaviour
     yield return null;
 
     Debug.Log("LoadChart - loading lines");
-    int i = 0;
     foreach (var line in chart.lines)
     {
-      Debug.LogFormat("LoadChart - LoadLines - loading Lines[{0}]", i);
-      yield return LoadLine(i, line);
-      ++i;
-      yield return null;
+      yield return LoadLine(line);
     }
     StartTime = Time.time;
     Debug.Log("LoadChart - done");
   }
-  IEnumerator LoadLine(int i, Line line)
+  IEnumerator LoadLine(Line line)
   {
-    line.obj = Instantiate(LinePrefab);
-    line.obj.GetComponent<LineController>().line = line;
-    yield return line.obj.GetComponent<LineController>().Load();
+    yield return LineController.Make(line);
   }
   void GameStart()
   {
