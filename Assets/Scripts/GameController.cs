@@ -107,14 +107,10 @@ public class GameController : MonoBehaviour
     Debug.Log("LoadChart - loading lines");
     foreach (var line in chart.lines)
     {
-      yield return LoadLine(line);
+      yield return LineController.Make(line);
     }
     StartTime = Time.time;
     Debug.Log("LoadChart - done");
-  }
-  IEnumerator LoadLine(Line line)
-  {
-    yield return LineController.Make(line);
   }
   void GameStart()
   {
