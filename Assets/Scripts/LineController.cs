@@ -24,6 +24,7 @@ public class LineController : MonoBehaviour
     }
   }
   public LineRotate[] rotates;
+  static public GameObject NotePrefab;
   // Start is called before the first frame update
   void Start()
   {
@@ -52,9 +53,9 @@ public class LineController : MonoBehaviour
     }
     Array.Sort(rotates, (a, b) => { return a.Start.CompareTo(b.Start); });
   }
-  public void MakeNode(GameObject baseObject, double y, float x)
+  public void MakeNode(double y, float x)
   {
-    var obj = Instantiate(baseObject, transform);
+    var obj = Instantiate(NotePrefab, transform);
     var pos = obj.transform.position;
     pos.y = (float)y;
     pos.x = x;
