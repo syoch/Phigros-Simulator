@@ -56,9 +56,6 @@ public class GameController : MonoBehaviour
   public float BarTime;
   public Chart chart;
   public int idx;
-  public GameObject TapNote;
-  public GameObject DragNote;
-  public GameObject FlickNote;
   public GameObject LinePrefab;
   public GameObject LoadingObject;
   public double BarYSize;
@@ -84,12 +81,7 @@ public class GameController : MonoBehaviour
     LoadingObject.SetActive(true);
     // load prefabs
     Debug.Log("Load - Loading prefabs...");
-    TapNote = Resources.Load<GameObject>("TapNote");
-    yield return null;
-    DragNote = Resources.Load<GameObject>("DragNote");
-    yield return null;
-    FlickNote = Resources.Load<GameObject>("FlickNote");
-    yield return null;
+    NoteController.LoadSprites();
     LinePrefab = Resources.Load<GameObject>("Line");
     yield return null;
     // load chart

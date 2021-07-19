@@ -5,6 +5,9 @@ using UnityEngine;
 public class NoteController : MonoBehaviour
 {
   public float StartPos;
+  static public Sprite TapNoteSprite;
+  static public Sprite DragNoteSprite;
+  static public Sprite FlickNoteSprite;
   // Start is called before the first frame update
   void Start()
   {
@@ -32,5 +35,15 @@ public class NoteController : MonoBehaviour
   public void init()
   {
     StartPos = transform.position.y;
+  }
+  static public IEnumerable LoadSprites()
+  {
+    var sprites = Resources.LoadAll<Sprite>("Sprites/NormalNotes");
+    FlickNoteSprite = sprites[0];
+    yield return null;
+    DragNoteSprite = sprites[1];
+    yield return null;
+    TapNoteSprite = sprites[2];
+    yield return null;
   }
 }
