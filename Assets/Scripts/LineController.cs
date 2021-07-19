@@ -6,8 +6,8 @@ public class LineRotate
 {
   public LineRotate(Rotate rotate)
   {
-    Start = GameController.Instance.TimingToYPos(rotate.start);
-    End = GameController.Instance.TimingToYPos(rotate.end);
+    Start = GameController.Instance.TimingToTime(rotate.start);
+    End = GameController.Instance.TimingToTime(rotate.end);
     Deg = rotate.val;
     During = End - Start;
   }
@@ -24,8 +24,8 @@ public class LinePosition
 {
   public LinePosition(Position position)
   {
-    Start = GameController.Instance.TimingToYPos(position.start);
-    End = GameController.Instance.TimingToYPos(position.end);
+    Start = GameController.Instance.TimingToTime(position.start);
+    End = GameController.Instance.TimingToTime(position.end);
     During = Start - End;
     x = position.x;
     y = position.y;
