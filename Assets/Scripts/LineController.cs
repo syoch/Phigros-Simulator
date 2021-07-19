@@ -62,7 +62,7 @@ public class LineController : MonoBehaviour
     foreach (var note in line.notes)
     {
       Debug.Log("loading... - loading notes... - loading...");
-      var noteobj = NoteController.Make(note, line);
+      NoteController.Make(note, line);
     }
   }
 

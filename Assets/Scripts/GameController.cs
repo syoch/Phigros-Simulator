@@ -107,7 +107,10 @@ public class GameController : MonoBehaviour
     Debug.Log("LoadChart - loading lines");
     foreach (var line in chart.lines)
     {
-      yield return LineController.Make(line);
+      Debug.Log("loading...");
+      yield return Instantiate<GameObject>(LinePrefab)
+                  .GetComponent<LineController>()
+                  .Load(line);
     }
     StartTime = Time.time;
     Debug.Log("LoadChart - done");
