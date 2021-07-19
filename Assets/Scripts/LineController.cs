@@ -57,8 +57,8 @@ public class LineController : MonoBehaviour
     foreach (var rotate in _line.rotates)
     {
       data = new LineRotate();
-      data.Start = rotate.start[0] + rotate.start[1] / rotate.start[2];
-      data.End = rotate.end[0] + rotate.end[1] / rotate.end[2];
+      data.Start = GameController.Instance.TimingToYPos(rotate.start);
+      data.End = GameController.Instance.TimingToYPos(rotate.end);
       data.Deg = rotate.val;
       rotates[i] = data;
       yield return null;
