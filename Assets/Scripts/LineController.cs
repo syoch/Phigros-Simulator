@@ -53,7 +53,7 @@ public class LineController : MonoBehaviour
     }
     Array.Sort(rotates, (a, b) => { return a.Start.CompareTo(b.Start); });
   }
-  public void MakeNode(double y, float x)
+  public GameObject MakeNode(double y, float x)
   {
     var obj = Instantiate(NotePrefab, transform);
     var pos = obj.transform.position;
@@ -62,5 +62,7 @@ public class LineController : MonoBehaviour
     obj.transform.position = pos;
 
     obj.GetComponent<NoteController>().init();
+
+    return obj;
   }
 }
