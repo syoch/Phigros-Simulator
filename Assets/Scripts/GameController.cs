@@ -81,7 +81,7 @@ public class GameController : MonoBehaviour
     LoadingObject.SetActive(true);
     // load prefabs
     Debug.Log("Load - Loading prefabs...");
-    NoteController.LoadSprites();
+    yield return NoteController.LoadSprites();
     LinePrefab = Resources.Load<GameObject>("Line");
     yield return null;
     // load chart
