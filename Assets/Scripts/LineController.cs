@@ -91,10 +91,4 @@ public class LineController : MonoBehaviour
     NotePrefab = Resources.Load<GameObject>("Note");
     LinePrefab = Resources.Load<GameObject>("Line");
   }
-  static public IEnumerable Make(Line line)
-  {
-    return Instantiate<GameObject>(LinePrefab)
-                  .GetComponent<LineController>()
-                  .Load(line);
-  }
 }
