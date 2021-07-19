@@ -112,12 +112,12 @@ public class GameController : MonoBehaviour
                   .GetComponent<LineController>()
                   .Load(line);
     }
-    StartTime = Time.time;
     Debug.Log("LoadChart - done");
   }
   void GameStart()
   {
     Started = true;
+    StartTime = Time.time;
   }
   // Update is called once per frame
   void Update()
