@@ -80,4 +80,8 @@ public class LineController : MonoBehaviour
 
     return obj;
   }
+  static public void LoadPrefab()
+  {
+    NotePrefab = Resources.Load<GameObject>("Note");
+  }
 }
