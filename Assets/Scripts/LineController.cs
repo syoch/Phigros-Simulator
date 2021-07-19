@@ -56,14 +56,10 @@ public class LineController : MonoBehaviour
       i++;
     }
     Array.Sort(rotates, (a, b) => { return a.Start.CompareTo(b.Start); });
-    int j = 0;
+
     foreach (var note in line.notes)
     {
-      Debug.LogFormat("LoadLine - Lines[{0}]:Notes[{1}]", i, j);
-
       var noteobj = MakeNode(note, line);
-
-      j++;
     }
   }
   public IEnumerable MakeNode(Note note, Line line)
