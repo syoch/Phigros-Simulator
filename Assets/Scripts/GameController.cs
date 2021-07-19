@@ -143,25 +143,6 @@ public class GameController : MonoBehaviour
     );
     yield return null;
   }
-  GameObject GetNoteBaseObject(string type)
-  {
-    if (type == "tap")
-    {
-      return TapNote;
-    }
-    else if (type == "drag")
-    {
-      return DragNote;
-    }
-    else if (type == "flick")
-    {
-      return FlickNote;
-    }
-    else
-    {
-      return TapNote;
-    }
-  }
 
   void GameStart()
   {

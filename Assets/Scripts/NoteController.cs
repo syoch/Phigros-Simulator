@@ -47,4 +47,23 @@ public class NoteController : MonoBehaviour
     yield return null;
     // TODO: Load Multi
   }
+  Sprite GetNoteBaseObject(string type)
+  {
+    if (type == "tap")
+    {
+      return TapNoteSprite;
+    }
+    else if (type == "drag")
+    {
+      return DragNoteSprite;
+    }
+    else if (type == "flick")
+    {
+      return FlickNoteSprite;
+    }
+    else
+    {
+      return TapNoteSprite;
+    }
+  }
 }
