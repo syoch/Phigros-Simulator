@@ -14,6 +14,13 @@ public class LineRotate
 }
 public class LinePosition
 {
+  public LinePosition(Position position)
+  {
+    Start = GameController.Instance.TimingToYPos(position.start);
+    End = GameController.Instance.TimingToYPos(position.end);
+    x = position.x;
+    y = position.y;
+  }
   public double Start;
   public double End;
   public int x;
@@ -69,16 +76,10 @@ public class LineController : MonoBehaviour
   IEnumerator LoadPositions()
   {
     positions = new LinePosition[_line.positions.Length];
-    LinePosition data;
     int i = 0;
     foreach (var pos in _line.positions)
     {
-      data = new LinePosition();
-      data.Start = GameController.Instance.TimingToYPos(pos.start);
-      data.End = GameController.Instance.TimingToYPos(pos.end);
-      data.x = pos.x;
-      data.y = pos.y;
-      positions[i] = data;
+      positions[i] = new LinePosition(pos);
       yield return null;
       i++;
     }
