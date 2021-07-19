@@ -45,5 +45,6 @@ public class NoteController : MonoBehaviour
     yield return null;
     TapNoteSprite = sprites[2];
     yield return null;
+    // TODO: Load Multi
   }
 }
