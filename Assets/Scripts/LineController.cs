@@ -39,6 +39,7 @@ public class LineController : MonoBehaviour
   }
   public IEnumerator Load(Line line)
   {
+    Debug.Log("loading... - loading...");
     line.obj = gameObject;
     this.line = line;
 
@@ -57,8 +58,10 @@ public class LineController : MonoBehaviour
     }
     Array.Sort(rotates, (a, b) => { return a.Start.CompareTo(b.Start); });
 
+    Debug.Log("loading... - loading notes...");
     foreach (var note in line.notes)
     {
+      Debug.Log("loading... - loading notes... - loading...");
       var noteobj = MakeNode(note, line);
     }
   }
@@ -90,7 +93,7 @@ public class LineController : MonoBehaviour
   }
   static public IEnumerable Make(Line line)
   {
-    yield return Instantiate<GameObject>(LinePrefab)
+    return Instantiate<GameObject>(LinePrefab)
                   .GetComponent<LineController>()
                   .Load(line);
   }
