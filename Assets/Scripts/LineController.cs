@@ -66,12 +66,31 @@ public class LineController : MonoBehaviour
     }
     Array.Sort(rotates, (a, b) => { return a.Start.CompareTo(b.Start); });
   }
+  IEnumerator LoadPositions()
+  {
+    positions = new LinePosition[_line.positions.Length];
+    LinePosition data;
+    int i = 0;
+    foreach (var pos in _line.positions)
+    {
+      data = new LinePosition();
+      data.Start = GameController.Instance.TimingToYPos(pos.start);
+      data.End = GameController.Instance.TimingToYPos(pos.end);
+      data.x = pos.x;
+      data.y = pos.y;
+      positions[i] = data;
+      yield return null;
+      i++;
+    }
+    Array.Sort(positions, (a, b) => { return a.Start.CompareTo(b.Start); });
+  }
   public IEnumerator Load(Line line)
   {
     line.obj = gameObject;
     this.line = line;
 
     LoadRotates();
+    LoadPositions();
 
     foreach (var note in line.notes)
     {
