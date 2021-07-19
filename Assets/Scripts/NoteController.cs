@@ -32,11 +32,6 @@ public class NoteController : MonoBehaviour
       Destroy(gameObject, 0);
     }
   }
-
-  public void init()
-  {
-    StartPos = transform.position.y;
-  }
   static public IEnumerator LoadSprites()
   {
     var sprites = Resources.LoadAll<Sprite>("Sprites/NormalNotes");
@@ -88,7 +83,7 @@ public class NoteController : MonoBehaviour
     yield return null;
 
     var controller = obj.GetComponent<NoteController>();
-    controller.init();
+    controller.StartPos = obj.transform.position.y;
 
     obj.GetComponent<SpriteRenderer>().sprite = GetNoteBaseObject(note.type);
   }
