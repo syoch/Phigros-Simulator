@@ -4,6 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 public class LineRotate
 {
+  public LineRotate(Rotate rotate)
+  {
+    Start = GameController.Instance.TimingToYPos(rotate.start);
+    End = GameController.Instance.TimingToYPos(rotate.end);
+    Deg = rotate.val;
+  }
   public double Start;
   public double End;
   public double Deg;
@@ -59,15 +65,10 @@ public class LineController : MonoBehaviour
   IEnumerator LoadRotates()
   {
     rotates = new LineRotate[_line.rotates.Length];
-    LineRotate data;
     int i = 0;
     foreach (var rotate in _line.rotates)
     {
-      data = new LineRotate();
-      data.Start = GameController.Instance.TimingToYPos(rotate.start);
-      data.End = GameController.Instance.TimingToYPos(rotate.end);
-      data.Deg = rotate.val;
-      rotates[i] = data;
+      rotates[i] = new LineRotate(rotate);
       yield return null;
       i++;
     }
