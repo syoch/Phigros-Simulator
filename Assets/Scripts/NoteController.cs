@@ -37,7 +37,7 @@ public class NoteController : MonoBehaviour
   {
     StartPos = transform.position.y;
   }
-  static public IEnumerable LoadSprites()
+  static public IEnumerator LoadSprites()
   {
     var sprites = Resources.LoadAll<Sprite>("Sprites/NormalNotes");
     FlickNoteSprite = sprites[0];
@@ -74,7 +74,7 @@ public class NoteController : MonoBehaviour
       return TapNoteSprite;
     }
   }
-  static public IEnumerable Make(Note note, Line line)
+  static public IEnumerator Make(Note note, Line line)
   {
     var obj = Instantiate(NoteController.note, line.obj.transform);
     yield return null;
