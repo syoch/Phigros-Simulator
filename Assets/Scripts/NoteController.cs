@@ -74,4 +74,25 @@ public class NoteController : MonoBehaviour
       return TapNoteSprite;
     }
   }
+  static public IEnumerable Make(Note note, Line line)
+  {
+    var obj = Instantiate(NoteController.note, line.obj.transform);
+    yield return null;
+
+    var pos = Camera.main.ViewportToWorldPoint(new Vector2(
+      (float)((note.pos + 1) / 2),
+      1
+    ));
+    yield return null;
+
+    obj.transform.position = new Vector2(
+      (float)(GameController.Instance.BarYSize + GameController.Instance.TimingToYPos(note.timing)),
+      pos.x
+    );
+    yield return null;
+
+    var controller = obj.GetComponent<NoteController>();
+    controller.init();
+    yield return controller.Load(note, line);
+  }
 }
