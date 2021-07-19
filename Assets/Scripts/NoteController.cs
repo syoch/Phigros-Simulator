@@ -50,12 +50,7 @@ public class NoteController : MonoBehaviour
     note = Resources.Load<GameObject>("Note");
     // TODO: Load Multi
   }
-  public IEnumerator Load(Note note, Line line)
-  {
-    GetComponent<SpriteRenderer>().sprite = GetNoteBaseObject(note.type);
-    yield return null;
-  }
-  Sprite GetNoteBaseObject(string type)
+  static Sprite GetNoteBaseObject(string type)
   {
     if (type == "tap")
     {
@@ -94,6 +89,7 @@ public class NoteController : MonoBehaviour
 
     var controller = obj.GetComponent<NoteController>();
     controller.init();
-    yield return controller.Load(note, line);
+
+    obj.GetComponent<SpriteRenderer>().sprite = GetNoteBaseObject(note.type);
   }
 }
