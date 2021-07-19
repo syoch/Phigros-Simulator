@@ -9,9 +9,11 @@ public class LineRotate
     Start = GameController.Instance.TimingToYPos(rotate.start);
     End = GameController.Instance.TimingToYPos(rotate.end);
     Deg = rotate.val;
+    During = End - Start;
   }
   public double Start;
   public double End;
+  public double During;
   public double Deg;
   override public string ToString()
   {
@@ -24,11 +26,13 @@ public class LinePosition
   {
     Start = GameController.Instance.TimingToYPos(position.start);
     End = GameController.Instance.TimingToYPos(position.end);
+    During = Start - End;
     x = position.x;
     y = position.y;
   }
   public double Start;
   public double End;
+  public double During;
   public int x;
   public int y;
   override public string ToString()
@@ -60,6 +64,8 @@ public class LineController : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
+    if (rotates[0].Start > Time.time) return;
+
 
   }
   IEnumerator LoadRotates()
