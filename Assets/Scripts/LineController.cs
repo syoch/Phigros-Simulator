@@ -103,9 +103,8 @@ public class LineController : MonoBehaviour
     line.obj = gameObject;
     this.line = line;
 
-    LoadRotates();
-    LoadPositions();
-
+    yield return LoadRotates();
+    yield return LoadPositions();
     foreach (var note in line.notes)
     {
       yield return NoteController.Make(note, line);
