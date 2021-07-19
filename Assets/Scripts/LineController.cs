@@ -7,6 +7,10 @@ public class LineRotate
   public double Start;
   public double End;
   public double Deg;
+  override public string ToString()
+  {
+    return string.Format("{0}->{1}:{2}", Start, End, Deg);
+  }
 }
 
 public class LineController : MonoBehaviour
