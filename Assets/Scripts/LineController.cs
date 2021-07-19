@@ -52,6 +52,21 @@ public class LineController : MonoBehaviour
       i++;
     }
     Array.Sort(rotates, (a, b) => { return a.Start.CompareTo(b.Start); });
+    int j = 0;
+    foreach (var note in _line.notes)
+    {
+      Debug.LogFormat("LoadLine - Lines[{0}]:Notes[{1}]", i, j);
+      var pos = Camera.main.ViewportToWorldPoint(new Vector2(
+        (float)((note.pos + 1) / 2),
+        1
+      ));
+      var noteobj = MakeNode(
+        GameController.Instance.BarYSize + GameController.Instance.TimingToYPos(note.timing),
+        pos.x
+      );
+      yield return noteobj.GetComponent<NoteController>().Load(note, _line);
+      j++;
+    }
   }
   public GameObject MakeNode(double y, float x)
   {

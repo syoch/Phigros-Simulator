@@ -47,6 +47,11 @@ public class NoteController : MonoBehaviour
     yield return null;
     // TODO: Load Multi
   }
+  public IEnumerator Load(Note note, Line line)
+  {
+    GetComponent<SpriteRenderer>().sprite = GetNoteBaseObject(note.type);
+    yield return null;
+  }
   Sprite GetNoteBaseObject(string type)
   {
     if (type == "tap")

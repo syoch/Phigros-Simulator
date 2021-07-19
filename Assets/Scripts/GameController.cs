@@ -120,30 +120,7 @@ public class GameController : MonoBehaviour
     line.obj = Instantiate(LinePrefab);
     line.obj.GetComponent<LineController>().line = line;
     yield return line.obj.GetComponent<LineController>().Load();
-    int j = 0;
-    foreach (var note in line.notes)
-    {
-      Debug.LogFormat("LoadLine - Lines[{0}]:Notes[{1}]", i, j);
-      yield return LoadNote(note, line);
-      j++;
-    }
   }
-  IEnumerator LoadNote(Note note, Line line)
-  {
-    var controller = line.obj.GetComponent<LineController>();
-
-    var pos = Camera.main.ViewportToWorldPoint(new Vector2(
-      (float)((note.pos + 1) / 2),
-      1
-    ));
-    controller.MakeNode(
-      GetNoteBaseObject(note.type),
-      BarYSize + TimingToYPos(note.timing),
-      pos.x
-    );
-    yield return null;
-  }
-
   void GameStart()
   {
     Started = true;
