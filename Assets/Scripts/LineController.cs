@@ -68,16 +68,13 @@ public class LineController : MonoBehaviour
   }
   public IEnumerator Load(Line line)
   {
-    Debug.Log("loading... - loading...");
     line.obj = gameObject;
     this.line = line;
 
     LoadRotates();
 
-    Debug.Log("loading... - loading notes...");
     foreach (var note in line.notes)
     {
-      Debug.Log("loading... - loading notes... - loading...");
       yield return NoteController.Make(note, line);
     }
   }
