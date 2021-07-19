@@ -76,11 +76,11 @@ public class LineController : MonoBehaviour
   }
   IEnumerator LoadRotates()
   {
-    rotates = new();
+    rotates = new List<LineRotate>();
     int i = 0;
     foreach (var rotate in _line.rotates)
     {
-      rotates[i] = new LineRotate(rotate);
+      rotates.Add(new LineRotate(rotate));
       yield return null;
       i++;
     }
@@ -88,11 +88,11 @@ public class LineController : MonoBehaviour
   }
   IEnumerator LoadPositions()
   {
-    positions = new();
+    positions = new List<LinePosition>();
     int i = 0;
     foreach (var pos in _line.positions)
     {
-      positions[i] = new LinePosition(pos);
+      positions.Add(new LinePosition(pos));
       yield return null;
       i++;
     }
