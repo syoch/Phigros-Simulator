@@ -130,7 +130,7 @@ public class GameController : MonoBehaviour
   }
   public double TimingToTime(double[] timing)
   {
-    var ret = BarTime * (timing[0] + timing[1] / timing[2]) * 64;
+    var ret = 2 * 60f / 200f * (timing[0] + timing[1] / timing[2]);
     return ret;
   }
 }
