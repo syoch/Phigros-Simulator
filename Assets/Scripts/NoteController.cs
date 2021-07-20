@@ -73,14 +73,12 @@ public class NoteController : MonoBehaviour
       (float)((note.pos + 1) / 2),
       1
     ));
-    yield return null;
 
     var y = GameController.Instance.BarYSize + GameController.Instance.TimingToYPos(note.timing);
     obj.transform.position = new Vector2(
       pos.x,
       (float)y
     );
-    yield return null;
 
     var controller = obj.GetComponent<NoteController>();
     controller.StartPos = obj.transform.position.y;
