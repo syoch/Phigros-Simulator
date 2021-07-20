@@ -6,8 +6,8 @@ public class LineRotate
 {
   public LineRotate(Rotate rotate)
   {
-    Start = GameController.Instance.TimingToTime(rotate.start);
-    End = GameController.Instance.TimingToTime(rotate.end);
+    Start = 60f / 200f * 2f + GameController.Instance.TimingToTime(rotate.start);
+    End = 60f / 200f * 2f + GameController.Instance.TimingToTime(rotate.end);
     Deg = rotate.val;
     During = End - Start;
   }
@@ -17,15 +17,15 @@ public class LineRotate
   public double Deg;
   override public string ToString()
   {
-    return string.Format("{0}->{1}:{2}", Start, End, Deg);
+    return string.Format("{0:f2}->{1:f2}:{2:f2}", Start, End, Deg);
   }
 }
 public class LinePosition
 {
   public LinePosition(Position position)
   {
-    Start = GameController.Instance.TimingToTime(position.start);
-    End = GameController.Instance.TimingToTime(position.end);
+    Start = 60f / 200f + GameController.Instance.TimingToTime(position.start);
+    End = 60f / 200f + GameController.Instance.TimingToTime(position.end);
     During = Start - End;
     x = position.x;
     y = position.y;
@@ -62,16 +62,37 @@ public class LineController : MonoBehaviour
   }
 
   // Update is called once per frame
-  float RotateBegin = 0;
-  float BeforeRotate = 0;
   void Update()
   {
-    if (rotates[0].Start > Time.time) return;
-    var current = (Time.deltaTime) / rotates[0].During * rotates[0].Deg;
-    transform.Rotate(0f, 0f, (float)current);
-    if (rotates[0].End < Time.time)
+    if (!GameController.Instance.Started) return;
+    var time = Time.time - GameController.StartTime;
+    if (rotates.Count > 0)
     {
+      var currentRotation = rotates[0];
 
+      if (currentRotation.Start > time) return;
+
+      transform.Rotate(
+        0,
+        0,
+        (float)(
+          (Time.deltaTime) *
+          (currentRotation.Deg / currentRotation.During)
+        )
+      );
+
+      if (currentRotation.End < time)
+      {
+        Debug.LogFormat(
+          "remove one rotate {0}-{1}={2} {3}",
+          Time.time,
+          GameController.StartTime,
+          time,
+          currentRotation
+        );
+        rotates.RemoveAt(0);
+        return;
+      }
     }
   }
   IEnumerator LoadRotates()
@@ -85,10 +106,13 @@ public class LineController : MonoBehaviour
       i++;
     }
     rotates.Sort((a, b) => { return a.Start.CompareTo(b.Start); });
+    Debug.Log(string.Join(", ", rotates));
   }
   IEnumerator LoadPositions()
   {
     positions = new List<LinePosition>();
+    yield return null;
+    /*
     int i = 0;
     foreach (var pos in _line.positions)
     {
@@ -97,6 +121,8 @@ public class LineController : MonoBehaviour
       i++;
     }
     positions.Sort((a, b) => { return a.Start.CompareTo(b.Start); });
+    Debug.Log(string.Join(", ", positions));
+    */
   }
   public IEnumerator Load(Line line)
   {
