@@ -64,12 +64,8 @@ public class LineController : MonoBehaviour
 
   }
 
-  // Update is called once per frame
-  void Update()
-  {
-    if (!GameController.Instance.Started) return;
-    var time = Time.time - GameController.StartTime;
-    if (rotates.Count > 0)
+  void UpdateLineRotate(float time){
+  if (rotates.Count > 0)
     {
       var currentRotation = rotates[0];
 
@@ -97,6 +93,15 @@ public class LineController : MonoBehaviour
         return;
       }
     }
+  }
+  // Update is called once per frame
+  void Update()
+  {
+    if (!GameController.Instance.Started) return;
+    var time = Time.time - GameController.StartTime;
+    UpdateLineRotate(time);
+    
+
   }
   IEnumerator LoadRotates()
   {
