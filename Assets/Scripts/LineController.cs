@@ -17,6 +17,7 @@ public class LineRotate
   public double During;
   public double Deg;
   public double EndDeg;
+  public bool IsSettedEndDeg;
   override public string ToString()
   {
     return string.Format("{0:f2}->{1:f2}:{2:f2}", Start, End, Deg);
@@ -73,7 +74,11 @@ public class LineController : MonoBehaviour
       var currentRotation = rotates[0];
 
       if (currentRotation.Start > time) return;
-
+      if (!currentRotation.IsSettedEndDeg)
+      {
+        currentRotation.EndDeg = transform.rotation.eulerAngles.z + currentRotation.Deg;
+        currentRotation.IsSettedEndDeg = true;
+      }
       transform.Rotate(
         0,
         0,
@@ -85,13 +90,9 @@ public class LineController : MonoBehaviour
 
       if (currentRotation.End < time)
       {
-        Debug.LogFormat(
-          "remove one rotate {0}-{1}={2} {3}",
-          Time.time,
-          GameController.StartTime,
-          time,
-          currentRotation
-        );
+        var angle = transform.eulerAngles;
+        angle.z = (float)currentRotation.EndDeg;
+        transform.eulerAngles = angle;
         rotates.RemoveAt(0);
         return;
       }
