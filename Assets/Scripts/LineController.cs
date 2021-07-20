@@ -10,11 +10,13 @@ public class LineRotate
     End = 60f / 200f * 2f + GameController.Instance.TimingToTime(rotate.end);
     Deg = rotate.val;
     During = End - Start;
+    EndDeg = 0;
   }
   public double Start;
   public double End;
   public double During;
   public double Deg;
+  public double EndDeg;
   override public string ToString()
   {
     return string.Format("{0:f2}->{1:f2}:{2:f2}", Start, End, Deg);
