@@ -64,35 +64,36 @@ public class LineController : MonoBehaviour
 
   }
 
-  void UpdateLineRotate(float time){
-  if (rotates.Count > 0)
+  void UpdateLineRotate(float time)
+  {
+    if (rotates.Count <= 0) return;
+
+    var currentRotation = rotates[0];
+
+    if (currentRotation.Start > time) return;
+    if (!currentRotation.IsSettedEndDeg)
     {
-      var currentRotation = rotates[0];
-
-      if (currentRotation.Start > time) return;
-      if (!currentRotation.IsSettedEndDeg)
-      {
-        currentRotation.EndDeg = transform.rotation.eulerAngles.z + currentRotation.Deg;
-        currentRotation.IsSettedEndDeg = true;
-      }
-      transform.Rotate(
-        0,
-        0,
-        (float)(
-          (Time.deltaTime) *
-          (currentRotation.Deg / currentRotation.During)
-        )
-      );
-
-      if (currentRotation.End < time)
-      {
-        var angle = transform.eulerAngles;
-        angle.z = (float)currentRotation.EndDeg;
-        transform.eulerAngles = angle;
-        rotates.RemoveAt(0);
-        return;
-      }
+      currentRotation.EndDeg = transform.rotation.eulerAngles.z + currentRotation.Deg;
+      currentRotation.IsSettedEndDeg = true;
     }
+    transform.Rotate(
+      0,
+      0,
+      (float)(
+        (Time.deltaTime) *
+        (currentRotation.Deg / currentRotation.During)
+      )
+    );
+
+    if (currentRotation.End < time)
+    {
+      var angle = transform.eulerAngles;
+      angle.z = (float)currentRotation.EndDeg;
+      transform.eulerAngles = angle;
+      rotates.RemoveAt(0);
+      return;
+    }
+
   }
   // Update is called once per frame
   void Update()
@@ -100,7 +101,7 @@ public class LineController : MonoBehaviour
     if (!GameController.Instance.Started) return;
     var time = Time.time - GameController.StartTime;
     UpdateLineRotate(time);
-    
+
 
   }
   IEnumerator LoadRotates()
