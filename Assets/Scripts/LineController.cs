@@ -17,7 +17,7 @@ public class LineRotate
   public double During;
   public double Deg;
   public double EndDeg;
-  public bool IsSettedEndDeg;
+  public bool IsInitalized;
   override public string ToString()
   {
     return string.Format("{0:f2}->{1:f2}:{2:f2}", Start, End, Deg);
@@ -41,7 +41,7 @@ public class LinePosition
   public int EndX;
   public int EndY;
 
-  public bool IsSettedEndVariables;
+  public bool IsInitalized;
   override public string ToString()
   {
     return string.Format("{0:f2}->{1:f2}:({2},{3})", Start, End, x, y);
@@ -75,10 +75,10 @@ public class LineController : MonoBehaviour
     var currentRotation = rotates[0];
 
     if (currentRotation.Start > time) return;
-    if (!currentRotation.IsSettedEndDeg)
+    if (!currentRotation.IsInitalized)
     {
       currentRotation.EndDeg = transform.rotation.eulerAngles.z + currentRotation.Deg;
-      currentRotation.IsSettedEndDeg = true;
+      currentRotation.IsInitalized = true;
     }
     transform.Rotate(
       0,
