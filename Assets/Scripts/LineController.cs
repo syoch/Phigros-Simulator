@@ -30,8 +30,12 @@ public class LinePosition
     Start = 60f / 200f * 2f + GameController.Instance.TimingToTime(position.start);
     End = 60f / 200f * 2f + GameController.Instance.TimingToTime(position.end);
     During = Start - End;
-    x = position.x;
-    y = position.y;
+    var pos = Camera.main.ViewportToWorldPoint(new Vector2(
+      position.x,
+      position.y
+    ));
+    x = (int)pos.x;
+    y = (int)pos.y;
   }
   public double Start;
   public double End;
