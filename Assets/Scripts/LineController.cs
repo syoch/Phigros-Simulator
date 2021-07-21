@@ -54,7 +54,7 @@ public class LinePosition
   public bool IsInitalized;
   override public string ToString()
   {
-    return string.Format("{0:f2}->{1:f2}:({2:f2},{3:f2})->({4:f2},{5:f2})", Start, End, From[0], From[1], To[0], To[1]);
+    return string.Format("{0:f2}:({1:f2},{2:f2})", During, Diff[0], Diff[1]);
   }
 }
 
