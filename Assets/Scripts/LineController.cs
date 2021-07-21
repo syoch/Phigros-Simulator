@@ -159,8 +159,6 @@ public class LineController : MonoBehaviour
   IEnumerator LoadPositions()
   {
     positions = new List<LinePosition>();
-    yield return null;
-    /*
     int i = 0;
     foreach (var pos in _line.positions)
     {
@@ -170,7 +168,6 @@ public class LineController : MonoBehaviour
     }
     positions.Sort((a, b) => { return a.Start.CompareTo(b.Start); });
     Debug.Log(string.Join(", ", positions));
-    */
   }
   public IEnumerator Load(Line line)
   {
