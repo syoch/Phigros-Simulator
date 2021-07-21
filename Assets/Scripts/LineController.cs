@@ -27,8 +27,8 @@ public class LinePosition
 {
   public LinePosition(Position position)
   {
-    Start = 60f / 200f + GameController.Instance.TimingToTime(position.start);
-    End = 60f / 200f + GameController.Instance.TimingToTime(position.end);
+    Start = 60f / 200f * 2f + GameController.Instance.TimingToTime(position.start);
+    End = 60f / 200f * 2f + GameController.Instance.TimingToTime(position.end);
     During = Start - End;
     x = position.x;
     y = position.y;
@@ -38,9 +38,13 @@ public class LinePosition
   public double During;
   public int x;
   public int y;
+  public int EndX;
+  public int EndY;
+
+  public bool IsSettedEndVariables;
   override public string ToString()
   {
-    return string.Format("{0}->{1}:({2},{3})", Start, End, x, y);
+    return string.Format("{0:f2}->{1:f2}:({2},{3})", Start, End, x, y);
   }
 }
 
