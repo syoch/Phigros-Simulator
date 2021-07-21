@@ -140,7 +140,7 @@ public class LineController : MonoBehaviour
     if (!GameController.Instance.Started) return;
     var time = Time.time - GameController.StartTime;
     UpdateLineRotate(time);
-
+    UpdateLinePosition(time);
 
   }
   IEnumerator LoadRotates()
