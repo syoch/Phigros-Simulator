@@ -31,24 +31,30 @@ public class LinePosition
     End = 60f / 200f * 2f + GameController.Instance.TimingToTime(position.end);
     During = Start - End;
     var pos = Camera.main.ViewportToWorldPoint(new Vector2(
-      (position.x + 1) / 2,
-      (position.y + 1) / 2
+      (position.from[0] + 1) / 2,
+      (position.from[1] + 1) / 2
     ));
-    x = (int)pos.x;
-    y = (int)pos.y;
+    From = new[] { pos.x, pos.y };
+
+    pos = Camera.main.ViewportToWorldPoint(new Vector2(
+      (position.to[0] + 1) / 2,
+      (position.to[1] + 1) / 2
+    ));
+    To = new[] { pos.x, pos.y };
+
+    Diff = new[] { To[0] - From[0], To[1] - From[1] };
   }
   public double Start;
   public double End;
   public double During;
-  public int x;
-  public int y;
-  public float EndX;
-  public float EndY;
+  public float[] From;
+  public float[] To;
+  public float[] Diff;
 
   public bool IsInitalized;
   override public string ToString()
   {
-    return string.Format("{0:f2}->{1:f2}:({2},{3})", Start, End, x, y);
+    return string.Format("{0:f2}->{1:f2}:({2:f2},{3:f2})->({4:f2},{5:f2})", Start, End, From[0], From[1], To[0], To[1]);
   }
 }
 
@@ -112,27 +118,22 @@ public class LineController : MonoBehaviour
     if (currentPosition.Start > time) return;
     if (!currentPosition.IsInitalized)
     {
-      currentPosition.EndX = transform.position.x + currentPosition.x;
-      currentPosition.EndY = transform.position.y + currentPosition.y;
+      transform.position = new Vector3(currentPosition.From[0], currentPosition.From[1], 0);
       currentPosition.IsInitalized = true;
     }
     transform.Translate(
       (float)(
         (Time.deltaTime) *
-        (currentPosition.x / currentPosition.During)
+        (currentPosition.Diff[0] / currentPosition.During)
       ),
       (float)(
         (Time.deltaTime) *
-        (currentPosition.y / currentPosition.During)
+        (currentPosition.Diff[1] / currentPosition.During)
       ), 0);
 
     if (currentPosition.End < time)
     {
-      transform.position = new Vector3(
-        currentPosition.EndX,
-        currentPosition.EndY,
-        0
-      );
+      transform.position = new Vector3(currentPosition.To[0], currentPosition.To[1], 0);
       positions.RemoveAt(0);
       return;
     }
