@@ -26,8 +26,8 @@ public class Position
 {
   public double[] start;
   public double[] end;
-  public int x;
-  public int y;
+  public int[] from;
+  public int[] to;
 }
 
 [Serializable]
@@ -94,6 +94,7 @@ public class GameController : MonoBehaviour
     GameStart();
     Debug.Log("Load - Loading Process Is Done");
     LoadingObject.SetActive(false);
+    Debug.Break();
   }
   IEnumerator LoadChart()
   {
