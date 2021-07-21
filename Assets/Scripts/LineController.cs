@@ -38,8 +38,8 @@ public class LinePosition
   public double During;
   public int x;
   public int y;
-  public int EndX;
-  public int EndY;
+  public float EndX;
+  public float EndY;
 
   public bool IsInitalized;
   override public string ToString()
@@ -95,6 +95,41 @@ public class LineController : MonoBehaviour
       angle.z = (float)currentRotation.EndDeg;
       transform.eulerAngles = angle;
       rotates.RemoveAt(0);
+      return;
+    }
+
+  }
+  void UpdateLinePosition(float time)
+  {
+    if (positions.Count <= 0) return;
+
+    var currentPosition = positions[0];
+
+    if (currentPosition.Start > time) return;
+    if (!currentPosition.IsInitalized)
+    {
+      currentPosition.EndX = transform.position.x + currentPosition.x;
+      currentPosition.EndY = transform.position.y + currentPosition.y;
+      currentPosition.IsInitalized = true;
+    }
+    transform.Translate(
+      (float)(
+        (Time.deltaTime) *
+        (currentPosition.x / currentPosition.During)
+      ),
+      (float)(
+        (Time.deltaTime) *
+        (currentPosition.y / currentPosition.During)
+      ), 0);
+
+    if (currentPosition.End < time)
+    {
+      transform.position = new Vector3(
+        currentPosition.EndX,
+        currentPosition.EndY,
+        0
+      );
+      positions.RemoveAt(0);
       return;
     }
 
