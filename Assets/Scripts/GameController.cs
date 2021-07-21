@@ -26,8 +26,8 @@ public class Position
 {
   public double[] start;
   public double[] end;
-  public int[] from;
-  public int[] to;
+  public float[] from;
+  public float[] to;
 }
 
 [Serializable]
